@@ -1,1 +1,4 @@
-import pandas as pdgdp = pd.read_excel("gdp.xlsx")print(gdp.from("Continent"))
+import pandas as pd
+
+
+gdp = pd.read_excel("gdp.xlsx")
