@@ -25,5 +25,6 @@ def rollDie(money):
     print("iterations: " + str(games) + "\nmax money: " + str(max))
 
 
-rollDie(10)
+mon = input("Enter the amount of money you would like to put down: ")
+rollDie(int(mon))
 

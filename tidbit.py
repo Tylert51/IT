@@ -1,5 +1,9 @@
 import pandas as pd
 
+def roundN(num, nDecimal):
+    return format(num, "." + str(nDecimal) + "f")
+
+
 months = []
 totalBalOwe = []
 monthlyInterest = []
@@ -19,23 +23,36 @@ monthPrin = monthlyPayments - monthInt
 
 
 
-while(bal >= 0):
+while(bal > 0):
 
     if (m == 1):
         bal = bal - downPay
 
-    totalBalOwe.append(bal)
     
     monthInt = bal * (0.12 / 12)
-    monthlyInterest.append(monthInt)
+    bal += monthInt
+    totalBalOwe.append("$" + roundN(bal, 2))
+
+    monthlyInterest.append("$" + roundN(monthInt , 2))
 
     monthPrin = monthlyPayments - monthInt
-    monthlyPrincipal.append(monthPrin)
+    monthlyPrincipal.append("$" + roundN(monthPrin, 2))
 
-    monthlyPay.append(monthlyPayments)
+    monthlyPay.append("$" + roundN(monthlyPayments, 2))
 
-    bal = round(bal - monthlyPayments, 2)
-    balAfterPay.append(bal)
+    
+    if(float(roundN(bal - monthlyPayments, 2)) <= 0):
+        
+        monthlyPay.pop()
+        monthlyPay.append("$" + roundN(bal, 2))
+        monthlyPrincipal.pop()
+        monthlyPrincipal.append("$" + roundN(bal - monthInt, 2))
+
+        bal=0
+    else:
+        bal = bal - monthlyPayments
+
+    balAfterPay.append("$" + roundN(bal, 2))
 
     months.append(m)
     m+=1
@@ -48,14 +65,4 @@ df = pd.DataFrame(data)
 
 
 print(df)
-
-
-
-
-
-
-
-
-
-
 
