@@ -26,6 +26,9 @@ def calcSquaredDistance(x1, y1, x2, y2):
 
     return dist
 
+aDist = 0
+bDist = 0
+
 for i in range(0, len(xCoords)):
     
     distA = calcSquaredDistance(ax, ay, xCoords[i], yCoords[i])
@@ -33,20 +36,19 @@ for i in range(0, len(xCoords)):
 
     if distA < distB: 
         aCluster.append(i)
+        aDist += distA
     else:
         bCluster.append(i)
-
-aDist = 0
-bDist = 0
-
-for i in aCluster:
-    aDist += calcSquaredDistance(ax, ay, xCoords[i], yCoords[i])
-
-for i in bCluster:
-    bDist += calcSquaredDistance(bx, by, xCoords[i], yCoords[i])
+        bDist += distB
 
 
-print(aDist + bDist)
+print("\nLatitude 1: ", ax)
+print("Longitude 1: ", ay, "\n")
+
+print("Latitude 2: ", bx)
+print("Longitude 2: ", by, "\n")
+
+print("Squared Distance: ", aDist + bDist, "\n")
 
 
 
