@@ -49,8 +49,3 @@ print("Latitude 2: ", bx)
 print("Longitude 2: ", by, "\n")
 
 print("Squared Distance: ", aDist + bDist, "\n")
-
-
-
-
-
