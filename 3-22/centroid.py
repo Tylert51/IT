@@ -7,6 +7,8 @@ coords = pd.read_csv("3-22/coordinates.csv")
 xCoords = coords['xCoords']
 yCoords = coords['yCoords']
 
+allClusterPoints = []
+
 def getClusterPoints(n):
     clusterPoints = []
 
@@ -17,6 +19,8 @@ def getClusterPoints(n):
         coord = [x, y]
 
         clusterPoints.append(coord)
+
+        allClusterPoints.append([])
 
     return clusterPoints
 
@@ -29,7 +33,7 @@ def calcSquaredDistance(x1, y1, x2, y2):
 
     return dist
 
-clusterPoints = getClusterPoints(3)
+clusterPoints = getClusterPoints(2)
 
 
 for i in range (len(xCoords)):
@@ -46,7 +50,11 @@ for i in range (len(xCoords)):
             minDist = dist
             minIndex = c
 
-    
+
+    allClusterPoints[minIndex].append([xCoord, yCoord])
+
+print(allClusterPoints)
+
 
     
 
